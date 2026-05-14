@@ -1,33 +1,16 @@
-# Smart E-commerce Platform with AI assistant
+# React + Vite
 
-This is a complete scalable Cloud Native web application based on a Microservices Architecture using Node.js, Express, MongoDB, RabbitMQ, React, and OpenAI API.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Project Structure
+Currently, two official plugins are available:
 
-- `frontend`: React app (Vite)
-- `api-gateway`: Central entry point, routes traffic, handles authentication verification.
-- `auth-service`: User registration, login, JWT.
-- `product-service`: Product CRUD. Publishes messages to RabbitMQ on creation.
-- `ai-service`: Interacts with OpenAI for descriptions, recommendations, and chat. Listens to RabbitMQ.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## Prerequisites
-- Node.js v18+
-- MongoDB running locally on `mongodb://127.0.0.1:27017`
-- RabbitMQ running locally on `amqp://localhost:5672`
-- An OpenAI API Key
+## React Compiler
 
-## Getting Started
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-1. Copy `.env.example` to `.env` in the root folder (or each service if needed, but we will use the shared one locally by pointing dotenv to it, or copying it into each).
-   _Note: In this implementation, each service should ideally have its own `.env` file, but for simplicity you can copy the variables into each service's `.env` file._
+## Expanding the ESLint configuration
 
-2. Start MongoDB and RabbitMQ locally.
-
-3. Install dependencies and start each service:
-   - `cd api-gateway && npm install && npm run dev` (Port 3000)
-   - `cd auth-service && npm install && npm run dev` (Port 3001)
-   - `cd product-service && npm install && npm run dev` (Port 3002)
-   - `cd ai-service && npm install && npm run dev` (Port 3003)
-   - `cd frontend && npm install && npm run dev`
-
-4. Test using the provided `test-api.http` file or the Swagger UI at `http://localhost:3000/api-docs`.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
