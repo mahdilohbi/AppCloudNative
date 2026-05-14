@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: ecom_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - ecom_network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: ecom_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - ecom_network
+
+volumes:
+  mongodb_data:
+
+networks:
+  ecom_network:
+    driver: bridge

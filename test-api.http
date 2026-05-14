@@ -1,0 +1,73 @@
+### REST API Test File (test-api.http)
+### Use with VS Code REST Client extension
+
+@baseUrl = http://localhost:3000
+
+### 1. Register User
+# @name register
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "testuser",
+    "email": "test@example.com",
+    "password": "password123"
+}
+
+###
+
+### 2. Login User
+# @name login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "password123"
+}
+
+### Extract Token
+@token = {{login.response.body.token}}
+
+###
+
+### 3. Create Product (Requires Token)
+POST {{baseUrl}}/api/products
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Smart Watch Series X",
+    "description": "A high-end smartwatch.",
+    "price": 299.99,
+    "category": "Electronics",
+    "stock": 50
+}
+
+###
+
+### 4. Get All Products
+GET {{baseUrl}}/api/products
+
+###
+
+### 5. AI Chatbot Interaction (Requires Token)
+POST {{baseUrl}}/api/ai/chat
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "message": "What is the best smartwatch you have?"
+}
+### Create iPhone Product
+POST http://localhost:3000/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNmEwMWM5MzUxZmFiNWUwOTMxMzM4MTljIiwidXNlcm5hbWUiOiJ0ZXN0dXNlciJ9LCJpYXQiOjE3Nzg1Mjg3OTIsImV4cCI6MTc3ODYxNTE5Mn0.K0biRxvuudQqzoz7nZY5BssjnpdYCjm6iiJ1rvvSouQ
+Content-Type: application/json
+
+{
+  "title": "iPhone 15",
+  "price": 1200,
+  "category": "Phones",
+  "stock": 5
+}
+
